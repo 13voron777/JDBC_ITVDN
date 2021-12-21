@@ -48,12 +48,6 @@ public class Run {
                 System.out.println(fn + "\t\t\t" + phone + "\t\t\t" + email);
             }
 
-            statement.close();
-            preparedStatement.close();
-            boolean stClosed = statement.isClosed();
-            boolean closed = preparedStatement.isClosed();
-            System.out.println("\n" + stClosed + " " + closed);
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
