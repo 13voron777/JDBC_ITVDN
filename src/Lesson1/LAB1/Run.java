@@ -1,6 +1,8 @@
 package Lesson1.LAB1;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Run {
     private static final String URL = "jdbc:mysql://localhost:3306/cofeehouse";
@@ -40,12 +42,18 @@ public class Run {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             System.out.println("LAB 4:");
+            List<Personal> personals = new ArrayList<>();
             while (resultSet.next()) {
-                String fn = resultSet.getString("Fullname");
-                String phone = resultSet.getString("Phone");
-                String email = resultSet.getString("Email");
+                Personal personal = new Personal();
+                personal.setFullname(resultSet.getString("Fullname"));
+                personal.setPhone(resultSet.getString("Phone"));
+                personal.setEmail(resultSet.getString("Email"));
+                personals.add(personal);
+            }
 
-                System.out.println(fn + "\t\t\t" + phone + "\t\t\t" + email);
+            for (Personal personal : personals) {
+                System.out.println(personal.getFullname() + "\t\t\t" + personal.getPhone()
+                        + "\t\t\t" + personal.getEmail());
             }
 
         } catch (SQLException e) {

@@ -42,10 +42,6 @@ public class Run {
                 System.out.println();
             }
 
-            preparedStatement.close();
-            boolean isClosed = preparedStatement.isClosed();
-            System.out.println("\n" + isClosed);
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

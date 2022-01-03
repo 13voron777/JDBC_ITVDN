@@ -1,9 +1,9 @@
-# Task 2
+# Task 3
 CREATE DATABASE MyJoinsDB;
 
 USE MyJoinsDB;
 
-# Task 3
+# Task 4
 CREATE TABLE Employees
 	(
 		EmployeeID int NOT NULL,
@@ -69,23 +69,7 @@ INSERT EmployeesPrivate
 (EmployeeID, MaritalStatus, BirthDate, PlaceOfResidence) 
 VALUES
 (1, 'Холост', '1996-08-13', 'Щецин'),
-(2, "Женат", '1992-09-15', 'Берлин'),
+(2, 'Женат', '1992-09-15', 'Берлин'),
 (3, 'Холост', '1990-04-24', 'Вильнюс'),
 (4, 'Холост', '1997-02-07', 'Прага'),
 (5, 'Женат', '1988-11-02', 'Марсель');
-
-# Task 4
-SELECT e.Name, e.TelephoneNumber, ep.PlaceOfResidence
-FROM Employees e
-JOIN EmployeesPrivate ep ON ep.EmployeeID = e.EmployeeID;
-
-SELECT e.Name, ep.BirthDate, e.TelephoneNumber
-FROM EmployeesPrivate ep
-JOIN Employees e ON e.EmployeeID = ep.EmployeeID
-WHERE ep.MaritalStatus = 'Холост';
-
-SELECT e.Name, ep.BirthDate, e.TelephoneNumber
-FROM Employees e
-JOIN EmployeesPrivate ep ON ep.EmployeeID = e.EmployeeID
-JOIN EmployeesSalaries es ON es.EmployeeID = e.EmployeeID
-WHERE es.Position = 'Менеджер';

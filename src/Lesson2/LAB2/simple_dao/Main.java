@@ -32,9 +32,10 @@ public class Main {
         client1.setName("Viktor");
         client1.setAge(25);
         client1.setPhone("+48 888 777 555");
-        clientDAO.add(client1);
-
-
+        //clientDAO.add(client1);
+        //clientDAO.updatePhone("+48 888 888 888", 2);
+        //clientDAO.remove("Viktor");
+        clientDAO.getAll();
 
 //        Car car2 = new Car();
 //        car2.setMark("Chevrolet");

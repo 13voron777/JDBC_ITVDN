@@ -1,0 +1,2 @@
+INSERT INTO house(HouseID, Number, Street) VALUES (1, 30, 'Nowy Swiat'), (2, 50, 'Solec');
+UPDATE house SET Number = 7 WHERE HouseID = 1;
