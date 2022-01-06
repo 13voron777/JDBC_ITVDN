@@ -1,6 +1,5 @@
 package Lesson2.LAB2.simple_dao.dao;
 
-import Lesson2.LAB2.simple_dao.entity.Car;
 import Lesson2.LAB2.simple_dao.entity.Client;
 
 import java.sql.*;
@@ -84,21 +83,18 @@ public class ClientJDBCDao implements ClientDAO {
     }
 
     @Override
-    public Client getById(int id) {
+    public Client getById(long id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         connection = getConnection();
-        /*try {
-            connection = getConnection();
-            statement = connection.prepareStatement("SELECT * FROM clients");
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM clients WHERE Id = ?");
 
-
-
-            ResultSet rs = statement.executeQuery();
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                long id = rs.getLong(1);
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 String phone = rs.getString(4);
@@ -110,20 +106,19 @@ public class ClientJDBCDao implements ClientDAO {
                 return client;
             }
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (connection != null && statement != null) {
+            if (connection != null && preparedStatement != null) {
 
                 try {
                     connection.close();
-                    statement.close();
+                    preparedStatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-        }*/
+        }
 
         return null;
     }
@@ -141,9 +136,7 @@ public class ClientJDBCDao implements ClientDAO {
             preparedStatement.setString(1, phone);
             preparedStatement.setInt(2, clientId);
 
-            int updatedValues = preparedStatement.executeUpdate();
-
-            System.out.println("Values updated: " + updatedValues);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -172,9 +165,7 @@ public class ClientJDBCDao implements ClientDAO {
 
             preparedStatement.setString(1, name);
 
-            int deletedValues = preparedStatement.executeUpdate();
-
-            System.out.println("Values deleted: " + deletedValues);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,7 +188,7 @@ public class ClientJDBCDao implements ClientDAO {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsshop", "root", "root");
             return connection;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

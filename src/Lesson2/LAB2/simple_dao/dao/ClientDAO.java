@@ -13,7 +13,7 @@ public interface ClientDAO {
 
     List<Client> getAll();
 
-    Client getById(int id);
+    Client getById(long id);
 
     void updatePhone(String phone, int clientId);
 
